@@ -35,3 +35,40 @@ INSERT INTO inscriben(
 
 
 
+////////
+ select *, n1*0.3+n2*0.3+n3*0.4 def from inscriben,estudiante,asignatura where inscriben.id_p = estudiante.id_p and asignatura.id_a=inscriben.id_a and estudiante.id_p=1;
+
+select *, n1*0.3+n2*0.3+n3*0.4 def from inscriben,estudiante,asignatura where inscriben.id_p = estudiante.id_p and asignatura.id_a=inscriben.id_a order by id_p asc;
+
+
+/////
+
+create table T1 as
+SELECT nombre_n as "Nombre",nombre_asigna as "Asignatura" ,((n1*0.3)+(n2*0.3)+(n3*0.4)) as "Nota definitiva" ,
+	CASE
+	WHEN ((n1*0.3)+(n2*0.3)+(n3*0.4))>3 THEN 'Aprobo'
+	ELSE 'Reprobo'
+	end "Concepto"
+	
+	from estudiante,asignatura,inscriben
+where inscriben.id_p = estudiante.id_p and inscriben.id_a  =  asignatura.id_a ;
+
+
+update inscriben set n1=0 where id_p=1;
+
+ ALTER TABLE inscriben ADD COLUMN n_definn double precision ;
+
+UPDATE inscriben
+SET n_definn=(n1*0.3)+(n2*0.3)+(n3*0.4)
+WHERE id_p > 0;
+
+update inscriben set n1=3.5;
+
+alter table estudiante add column nota_def double precision ;
+
+insert into estudiante(nota_def)  select  n1*0.3+n2*0.3+n3*0.4  from inscriben where inscriben.id_p=1
+
+
+
+
+
