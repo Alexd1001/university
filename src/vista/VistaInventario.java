@@ -5,19 +5,23 @@
 package vista;
 
 import controlador.ControladorInventario;
+import javax.swing.JOptionPane;
+import modelo.ClaseObservador;
 import modelo.OperacionesDB;
 
 /**
  *
  * @author hpclab
  */
-public class VistaInventario extends javax.swing.JFrame {
+public class VistaInventario extends javax.swing.JFrame  {
 
     /**
      * Creates new form VistaInventario
      */
     public VistaInventario() {
         initComponents();
+        String [] arg = null;
+         new Resultados().main(arg);
     }
     
     ControladorInventario objContr = new ControladorInventario();
@@ -47,7 +51,7 @@ public class VistaInventario extends javax.swing.JFrame {
         valorUnit = new javax.swing.JTextField();
         operacionesCBX = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        codigo_p = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +124,7 @@ public class VistaInventario extends javax.swing.JFrame {
 
         jLabel2.setText("Valor Unitario");
 
-        operacionesCBX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Compra", "Venta", "Devolucion" }));
+        operacionesCBX.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----Seleccionar Operacion----", "Compra", "Venta", "Devolucion" }));
         operacionesCBX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 operacionesCBXActionPerformed(evt);
@@ -128,6 +132,12 @@ public class VistaInventario extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Codigo");
+
+        codigo_p.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigo_pActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -140,7 +150,7 @@ public class VistaInventario extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codigo_p, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,7 +167,7 @@ public class VistaInventario extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(unidadesProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -201,10 +211,13 @@ public class VistaInventario extends javax.swing.JFrame {
         Object op = operacionesCBX.getSelectedItem();
         if(op.equals("Compra") )
         {
-            System.out.print("Una compra");
+            objContr.calculoCompra(Integer.parseInt(codigo_p.getText()),Integer.parseInt(unidadesProd.getText()), Integer.parseInt(valorUnit.getText()));
+           
         }
         else if(op.equals("Venta"))
         {
+            System.out.println("Venta");
+            objContr.calculoVenta(Integer.parseInt(codigo_p.getText()),Integer.parseInt(unidadesProd.getText()), Integer.parseInt(valorUnit.getText()));
         }
         else if(op.equals("Devolucion")){
             
@@ -220,10 +233,15 @@ public class VistaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_operacionesCBXActionPerformed
 
     private void registraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registraBtnActionPerformed
-
-        
+        if(codigoProducto.getText().equals("")||nombreProducto.getText().equals(""))
+           JOptionPane.showMessageDialog(null, "Los campos no pueden ser vacios");
+        else
         objContr.registra(Integer.parseInt(codigoProducto.getText()),nombreProducto.getText() );
     }//GEN-LAST:event_registraBtnActionPerformed
+
+    private void codigo_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_pActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigo_pActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,7 +253,11 @@ public class VistaInventario extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         
-
+            ClaseObservador objClaseObservador = new ClaseObservador();
+            Resultados objResultados = new Resultados();
+            objClaseObservador.addObserver(objResultados);
+            
+            
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -246,6 +268,7 @@ public class VistaInventario extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigoProducto;
+    private javax.swing.JTextField codigo_p;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -256,7 +279,6 @@ public class VistaInventario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nombreProducto;
     private javax.swing.JComboBox operacionesCBX;
     private javax.swing.JButton registraBtn;

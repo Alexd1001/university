@@ -1,0 +1,37 @@
+create table estudiante(
+	id_p int primary key,
+	nombre_n varchar(100),
+	nombre_a varchar(100),
+	direccion varchar(100),
+	telefono varchar(15),
+	f_nac date 
+
+
+)
+
+create table asignatura(
+	id_a int primary key, nombre_asigna varchar(100), ih int
+
+);
+
+create table inscriben( id_p int, id_a int, n1 real, n2 real, n3 real);
+
+
+INSERT INTO asignatura(
+            id_a, nombre_asigna, ih)
+    VALUES (1, 'Base de datos', 4);
+
+INSERT INTO estudiante(
+            id_p, nombre_n, nombre_a, direccion, f_nac, telefono)
+    VALUES (2, 'pablo', 'gonzales', 'carrera 23 no 25-49', '11-04-1990' , 3125124589);
+
+INSERT INTO inscriben(
+            id_p, id_a, n1, n2, n3)
+    VALUES (1, 1, 3.5, 3, 4);
+
+
+    select nombre_n,nombre_a,nombre_asigna, n1*0.3+n2*0.3+n3*0.4 def from inscriben,estudiante,asignatura where inscriben.id_p = estudiante.id_p;
+
+
+
+

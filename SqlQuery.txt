@@ -1,0 +1,29 @@
+SELECT nome_ as "Nombre",nom_a as "Asignatura" ,((n1*0.3)+(n2*0.3)+(n3*0.4)) as "Nota definitiva" ,
+	CASE 
+		WHEN ((n1*0.3)+(n2*0.3)+(n3*0.4))>3 THEN 'Aprobo' 
+		ELSE 'Reprobo' 
+	end "Concepto" 
+	into T1
+	from estudiantes,asignaturas,inscribe 
+	where inscribe.cod_e = estudiantes.cod_e and inscribe.cod_a = Asignaturas.cod_a ;
+
+
+ ALTER TABLE inscribe ADD COLUMN n_definn double precision ;
+ UPDATE inscribe
+ 
+   SET n_definn=(n1*0.3)+(n2*0.3)+(n3*0.4)
+   
+ WHERE cod_e > 0;
+UPDATE inscribe
+ 
+   SET n_definn=(n1*0.3)+(n2*0.3)+(n3*0.4)
+   
+ WHERE cod_e > 0;
+ UPDATE inscribe
+ 
+   SET n_defi=0
+ WHERE cod_e = 1033734444 and cod_a = 1111 ;
+
+ select * from inscribe
+
+ update inscribe set n_defi= n1*0.3+n2*0.3+n3*0.4 

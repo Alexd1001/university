@@ -184,7 +184,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="codigo_p" min="-2" pref="37" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -205,7 +205,7 @@
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="codigo_p" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="unidadesProd" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -236,10 +236,11 @@
                 <Component class="javax.swing.JComboBox" name="operacionesCBX">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Compra"/>
-                        <StringItem index="1" value="Venta"/>
-                        <StringItem index="2" value="Devolucion"/>
+                      <StringArray count="4">
+                        <StringItem index="0" value="----Seleccionar Operacion----"/>
+                        <StringItem index="1" value="Compra"/>
+                        <StringItem index="2" value="Venta"/>
+                        <StringItem index="3" value="Devolucion"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -252,7 +253,10 @@
                     <Property name="text" type="java.lang.String" value="Codigo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="codigo_p">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="codigo_pActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hpclab
@@ -49,6 +51,26 @@ public class ModeloInvetario {
     public void ventaCantidad(int unidadesv)
     {
         cantidad-=unidadesv;
+    }
+    
+    
+    public DefaultTableModel limpiarTabla()
+    {
+        DefaultTableModel modeloJT = new DefaultTableModel(
+                new Object [][] {
+                    {4, 1, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null}
+                },
+                new String [] {
+                    "Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4"
+                }
+                );
+        
+        
+        
+        return modeloJT;
     }
     
     
